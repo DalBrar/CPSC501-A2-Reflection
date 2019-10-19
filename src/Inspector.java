@@ -1,6 +1,8 @@
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Parameter;
 
 public class Inspector {
 	
@@ -43,16 +45,26 @@ public class Inspector {
     	
     	// 4) Constructors: name, parameter types, modifiers
     	output.add("\t// Constructors");
-    	Constructor[] constructors = c.getConstructors();
+    	Constructor[] constructors = c.getDeclaredConstructors();
     	for(Constructor con : constructors) {
-    		String conOutput = getModifiers(con.getModifiers());
-    		conOutput += title + "(";
+    		String conOutput = "\t" + getModifiers(con.getModifiers());
+    		conOutput += name + "(";
     		
     		int numParams = con.getParameterCount();
     		if (numParams == 0)
     			conOutput += ") {}";
     		else {
-    			
+    			Parameter[] params = con.getParameters();
+    			String conParams = "";
+    			for(Parameter conParam : params) {
+    				String type = conParam.getType().getSimpleName();
+    				String paramName = "";
+    				if (conParam.isNamePresent())
+    					paramName = " " + conParam.getName();
+    				conParams += type + paramName + ", ";
+    			}
+    			conParams = conParams.substring(0, conParams.length()-2);
+    			conOutput += conParams + ") {}";
     		}
     		output.add(conOutput);
     	}
@@ -106,6 +118,9 @@ public class Inspector {
     			tabs += "\t";
     	}
     	
+    	public void add() {
+    		add("");
+    	}
     	public void add(String str) {
     		sb.append(tabs + str + "\n");
     	}

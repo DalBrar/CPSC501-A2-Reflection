@@ -15,6 +15,12 @@ public final class ClassA implements java.io.Serializable, Runnable {
         } catch (Exception e) {
         }
     }
+    private ClassA(int i, int j) {
+        try {
+            setVal(i);
+        } catch (Exception e) {
+        }
+    }
 
     public void run() {
     }
