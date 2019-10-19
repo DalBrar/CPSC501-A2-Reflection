@@ -32,34 +32,10 @@ public class Inspector {
     	title += getInterfaces(c);
     	
     	title += " {";
-    	output.add(modifiers + title);
+    	output.add(title);
     	
     	// 4) Constructors: name, parameter types, modifiers
-    	output.add("\t// Constructors");
-    	Constructor[] constructors = c.getDeclaredConstructors();
-    	for(Constructor con : constructors)
-    	{
-    		String conOutput = "\t" + getModifiers(con.getModifiers());
-    		conOutput += name + "(";
-    		
-    		int numParams = con.getParameterCount();
-    		if (numParams == 0)
-    			conOutput += ") {}";
-    		else {
-    			Parameter[] params = con.getParameters();
-    			String conParams = "";
-    			for(Parameter conParam : params) {
-    				String type = conParam.getType().getSimpleName();
-    				String paramName = "";
-    				if (conParam.isNamePresent())
-    					paramName = " " + conParam.getName();
-    				conParams += type + paramName + ", ";
-    			}
-    			conParams = conParams.substring(0, conParams.length()-2);
-    			conOutput += conParams + ") {}";
-    		}
-    		output.add(conOutput);
-    	}
+    	output.add(getConstructors(c, name));
     	
     	// 5) Methods: modifiers, name, parameter types, exceptions, return type
     	output.add("\n\t// Methods");
@@ -184,4 +160,35 @@ public class Inspector {
     	}
     	return output;
     }
+
+    @SuppressWarnings("rawtypes")
+	private static String getConstructors(Class c, String name) {
+    	String output = "\t// Constructors";
+    	Constructor[] constructors = c.getDeclaredConstructors();
+    	for(Constructor con : constructors)
+    	{
+    		String conOutput = "\t" + getModifiers(con.getModifiers());
+    		conOutput += name + "(";
+    		
+    		int numParams = con.getParameterCount();
+    		if (numParams == 0)
+    			conOutput += ") {}";
+    		else {
+    			Parameter[] params = con.getParameters();
+    			String conParams = "";
+    			for(Parameter conParam : params) {
+    				String type = conParam.getType().getSimpleName();
+    				String paramName = "";
+    				if (conParam.isNamePresent())
+    					paramName = " " + conParam.getName();
+    				conParams += type + paramName + ", ";
+    			}
+    			conParams = conParams.substring(0, conParams.length()-2);
+    			conOutput += conParams + ") {}";
+    		}
+    		output += conOutput + "\n";
+    	}
+    	return output;
+    }
+    
 }
