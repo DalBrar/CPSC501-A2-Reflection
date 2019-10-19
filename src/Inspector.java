@@ -3,6 +3,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inspector {
 	
@@ -35,53 +37,15 @@ public class Inspector {
     	output.add(title);
     	
     	// 4) Constructors: name, parameter types, modifiers
-    	output.add(getConstructors(c, name));
+    	output.add(getConstructors(c));
+    	output.addln();
     	
     	// 5) Methods: modifiers, name, parameter types, exceptions, return type
-    	output.add("\n\t// Methods");
-    	Method[] methods = c.getDeclaredMethods();
-    	for(Method method : methods) {
-    		
-    	}
+    	output.add(getMethods(c));
+    	output.addln();
     	
     	output.add("}");
     	output.print();
-    	
-    	/*
-    	// 2) Name of the super-class
-    	Class cSuper = c.getSuperclass();
-    	if (cSuper != Object.class) {
-    		int modifiers = cSuper.getModifiers();
-    		
-    		// parent is Abstract
-    		if (Modifier.isAbstract(modifiers)) {
-    			name += " extends " + cSuper.getName();
-    		}
-    		// 2-a) parent is not Interface nor Abstract => recurse
-    		else if (!cSuper.isInterface()) {
-    			
-    		}
-    		// 3-a) Names of interfaces and recurse
-    		else
-    		{
-    			Class[] interfaces = cSuper.getInterfaces();
-    		}
-    	}
-			try
-			{
-				Object oSuper = cSuper.getConstructor().newInstance();
-		    	new Inspector().inspectClass(cSuper, oSuper, recursive, depth+1);
-			}
-			catch (InstantiationException |
-					 IllegalAccessException |
-					 IllegalArgumentException |
-					 InvocationTargetException |
-					 NoSuchMethodException |
-					 SecurityException e)
-			{
-				e.printStackTrace();
-			}
-    	*/
     }
     
     public class Output {
@@ -93,11 +57,15 @@ public class Inspector {
     			tabs += "\t";
     	}
     	
-    	public void add() {
+    	public void addln() {
     		add("");
     	}
     	public void add(String str) {
     		sb.append(tabs + str + "\n");
+    	}
+    	public void add(List<String> list) {
+    		for(String line : list)
+    			add(line);
     	}
     	
     	public void print() {
@@ -162,8 +130,11 @@ public class Inspector {
     }
 
     @SuppressWarnings("rawtypes")
-	private static String getConstructors(Class c, String name) {
-    	String output = "\t// Constructors";
+	private static List<String> getConstructors(Class c) {
+    	String name = c.getSimpleName();
+    	List<String> output = new ArrayList<String>();
+    	output.add("\t// Constructors");
+    	
     	Constructor[] constructors = c.getDeclaredConstructors();
     	for(Constructor con : constructors)
     	{
@@ -186,9 +157,16 @@ public class Inspector {
     			conParams = conParams.substring(0, conParams.length()-2);
     			conOutput += conParams + ") {}";
     		}
-    		output += conOutput + "\n";
+    		output.add(conOutput);
     	}
     	return output;
     }
+    
+    @SuppressWarnings("rawtypes")
+	private static List<String> getMethods(Class c) {
+    	List<String> output = new ArrayList<String>();
+    	return output;
+    }
+    
     
 }
