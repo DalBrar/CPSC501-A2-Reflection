@@ -1,3 +1,4 @@
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 
@@ -16,31 +17,45 @@ public class Inspector {
     	Output output = new Output(depth);
     	
     	// 1) Get class Name
+    	String title = "";
     	int mods = c.getModifiers();
     	String modifiers = getModifiers(mods);
     	String name = c.getSimpleName();
+    	title = modifiers + name;
     	
     	// 2) Name of immediate super-class
     	Class cSuper = c.getSuperclass();
     	if (cSuper != null && cSuper != Object.class)
-    		name += " extends " + cSuper.getSimpleName();
+    		title += " extends " + cSuper.getSimpleName();
     	
     	// 3) Name of each interface
     	Class[] interfaces = c.getInterfaces();
     	if (interfaces.length > 0) {
-    		name += " implements ";
+    		title += " implements ";
     		for(Class i : interfaces) {
-    			name += i.getSimpleName() + ", ";
+    			title += i.getSimpleName() + ", ";
     		}
-    		name = name.substring(0, name.length()-2);
+    		title = title.substring(0, title.length()-2);
     	}
     	
-    	name += " {";
-    	output.add(modifiers + name);
+    	title += " {";
+    	output.add(modifiers + title);
     	
     	// 4) Constructors: name, parameter types, modifiers
     	output.add("\t// Constructors");
-    	
+    	Constructor[] constructors = c.getConstructors();
+    	for(Constructor con : constructors) {
+    		String conOutput = getModifiers(con.getModifiers());
+    		conOutput += title + "(";
+    		
+    		int numParams = con.getParameterCount();
+    		if (numParams == 0)
+    			conOutput += ") {}";
+    		else {
+    			
+    		}
+    		output.add(conOutput);
+    	}
     	
     	output.add("}");
     	output.print();
