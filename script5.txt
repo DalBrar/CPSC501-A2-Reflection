@@ -2,5 +2,20 @@
 Filename: script5.txt
 Running Test: ClassD
 Recursive: true
-ClassD
+public ClassD {
+	// Constructors
+	public ClassD() 
+	public ClassD(int) 
+
+	// Methods
+	public String toString() 
+	public int getVal3() 
+
+	// Fields
+	private ClassA val = Object
+	private static ClassA val2 = Object
+	private int val3 = 34
+	private ClassA[] vallarray = Object
+}
+
 ======================================================

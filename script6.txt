@@ -1,6 +1,13 @@
 ======================================================
 Filename: script6.txt
-Running Test: [LClassB;@6d06d69c
+Running Test: [LClassB;@7d4991ad
 Recursive: true
-[LClassB;
+public final abstract ClassB[] implements Cloneable, Serializable {
+	// Constructors
+
+	// Methods
+
+	// Fields
+}
+
 ======================================================

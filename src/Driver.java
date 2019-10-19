@@ -19,19 +19,19 @@ public class Driver {
     }
 
     public static void runTest(String filename, Object testObj, boolean recursive) {
-        //try {
-            //PrintStream old = System.out;
-            //File file = new File(filename);
-            //FileOutputStream fos = new FileOutputStream(file);
-            //PrintStream ps = new PrintStream(fos);
-            //System.setOut(ps);
+        try {
+            PrintStream old = System.out;
+            File file = new File(filename);
+            FileOutputStream fos = new FileOutputStream(file);
+            PrintStream ps = new PrintStream(fos);
+            System.setOut(ps);
             System.out.println("======================================================");
             System.out.println("Filename: " + filename);
             System.out.println("Running Test: " + testObj);
             System.out.println("Recursive: " + recursive);
             new Inspector().inspect(testObj, recursive);
             System.out.println("======================================================");
-/*            ps.flush();
+            ps.flush();
             fos.flush();
             ps.close();
             fos.close();
@@ -41,6 +41,6 @@ public class Driver {
         } catch (Exception e) {
             System.err.println("Unable to compleatly run test: " + testObj);
             e.printStackTrace();
-        }*/
+        }
     }
 }

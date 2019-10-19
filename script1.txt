@@ -2,5 +2,22 @@
 Filename: script1.txt
 Running Test: ClassA
 Recursive: true
-ClassA
+public final ClassA implements Serializable, Runnable {
+	// Constructors
+	public ClassA() 
+	public ClassA(int) 
+
+	// Methods
+	public void run() 
+	public String toString() 
+	public void setVal(int) throws Exception
+	public int getVal() 
+	private void printSomething() 
+
+	// Fields
+	private int val = 3
+	private double val2 = 0.2
+	private boolean val3 = true
+}
+
 ======================================================

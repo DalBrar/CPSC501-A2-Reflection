@@ -2,5 +2,110 @@
 Filename: script8.txt
 Running Test: Test String
 Recursive: true
-java.lang.String
+public final String implements Serializable, Comparable, CharSequence {
+	// Constructors
+	public String(byte[], int, int) 
+	public String(byte[], Charset) 
+	public String(byte[], String) throws UnsupportedEncodingException
+	public String(byte[], int, int, Charset) 
+	public String(byte[], int, int, String) throws UnsupportedEncodingException
+	 String(char[], boolean) 
+	public String(StringBuilder) 
+	public String(StringBuffer) 
+	public String(byte[]) 
+	public String(int[], int, int) 
+	public String() 
+	public String(char[]) 
+	public String(String) 
+	public String(char[], int, int) 
+	public String(byte[], int) 
+	public String(byte[], int, int, int) 
+
+	// Methods
+	public boolean equals(Object) 
+	public String toString() 
+	public int hashCode() 
+	public int compareTo(String) 
+	public volatile int compareTo(Object) 
+	public int indexOf(String, int) 
+	public int indexOf(String) 
+	public int indexOf(int, int) 
+	public int indexOf(int) 
+	static int indexOf(char[], int, int, char[], int, int, int) 
+	static int indexOf(char[], int, int, String, int) 
+	public static String valueOf(int) 
+	public static String valueOf(long) 
+	public static String valueOf(float) 
+	public static String valueOf(boolean) 
+	public static String valueOf(char[]) 
+	public static String valueOf(char[], int, int) 
+	public static String valueOf(Object) 
+	public static String valueOf(char) 
+	public static String valueOf(double) 
+	public char charAt(int) 
+	private static void checkBounds(byte[], int, int) 
+	public int codePointAt(int) 
+	public int codePointBefore(int) 
+	public int codePointCount(int, int) 
+	public int compareToIgnoreCase(String) 
+	public String concat(String) 
+	public boolean contains(CharSequence) 
+	public boolean contentEquals(CharSequence) 
+	public boolean contentEquals(StringBuffer) 
+	public static String copyValueOf(char[]) 
+	public static String copyValueOf(char[], int, int) 
+	public boolean endsWith(String) 
+	public boolean equalsIgnoreCase(String) 
+	public static transient String format(Locale, String, Object[]) 
+	public static transient String format(String, Object[]) 
+	public void getBytes(int, int, byte[], int) 
+	public byte[] getBytes(Charset) 
+	public byte[] getBytes(String) throws UnsupportedEncodingException
+	public byte[] getBytes() 
+	public void getChars(int, int, char[], int) 
+	 void getChars(char[], int) 
+	private int indexOfSupplementary(int, int) 
+	public native String intern() 
+	public boolean isEmpty() 
+	public static transient String join(CharSequence, CharSequence[]) 
+	public static String join(CharSequence, Iterable) 
+	public int lastIndexOf(int) 
+	public int lastIndexOf(String) 
+	static int lastIndexOf(char[], int, int, String, int) 
+	public int lastIndexOf(String, int) 
+	public int lastIndexOf(int, int) 
+	static int lastIndexOf(char[], int, int, char[], int, int, int) 
+	private int lastIndexOfSupplementary(int, int) 
+	public int length() 
+	public boolean matches(String) 
+	private boolean nonSyncContentEquals(AbstractStringBuilder) 
+	public int offsetByCodePoints(int, int) 
+	public boolean regionMatches(int, String, int, int) 
+	public boolean regionMatches(boolean, int, String, int, int) 
+	public String replace(char, char) 
+	public String replace(CharSequence, CharSequence) 
+	public String replaceAll(String, String) 
+	public String replaceFirst(String, String) 
+	public String[] split(String) 
+	public String[] split(String, int) 
+	public boolean startsWith(String, int) 
+	public boolean startsWith(String) 
+	public CharSequence subSequence(int, int) 
+	public String substring(int) 
+	public String substring(int, int) 
+	public char[] toCharArray() 
+	public String toLowerCase(Locale) 
+	public String toLowerCase() 
+	public String toUpperCase() 
+	public String toUpperCase(Locale) 
+	public String trim() 
+
+	// Fields
+	private final char[] value = Object
+	private int hash = 0
+	private static final long serialVersionUID = -6849794470754667710
+	private static final ObjectStreamField[] serialPersistentFields = Object
+	public static final Comparator CASE_INSENSITIVE_ORDER = Object
+}
+
 ======================================================

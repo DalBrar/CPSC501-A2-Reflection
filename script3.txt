@@ -2,5 +2,19 @@
 Filename: script3.txt
 Running Test: ClassB
 Recursive: true
-ClassB
+public ClassB extends ClassC implements Runnable {
+	// Constructors
+	public ClassB() throws Exception
+
+	// Methods
+	public void run() 
+	public String toString() 
+	public void func3(int) 
+
+	// Fields
+	private ClassA val = Object
+	private ClassA val2 = Object
+	private ClassA val3 = Object
+}
+
 ======================================================
