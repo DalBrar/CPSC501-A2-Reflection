@@ -26,19 +26,10 @@ public class Inspector {
     	title = modifiers + name;
     	
     	// 2) Name of immediate super-class
-    	Class cSuper = c.getSuperclass();
-    	if (cSuper != null && cSuper != Object.class)
-    		title += " extends " + cSuper.getSimpleName();
+    	title += getSuperClass(c);
     	
     	// 3) Name of each interface
-    	Class[] interfaces = c.getInterfaces();
-    	if (interfaces.length > 0) {
-    		title += " implements ";
-    		for(Class i : interfaces) {
-    			title += i.getSimpleName() + ", ";
-    		}
-    		title = title.substring(0, title.length()-2);
-    	}
+    	title += getInterfaces(c);
     	
     	title += " {";
     	output.add(modifiers + title);
@@ -46,7 +37,8 @@ public class Inspector {
     	// 4) Constructors: name, parameter types, modifiers
     	output.add("\t// Constructors");
     	Constructor[] constructors = c.getDeclaredConstructors();
-    	for(Constructor con : constructors) {
+    	for(Constructor con : constructors)
+    	{
     		String conOutput = "\t" + getModifiers(con.getModifiers());
     		conOutput += name + "(";
     		
@@ -67,6 +59,13 @@ public class Inspector {
     			conOutput += conParams + ") {}";
     		}
     		output.add(conOutput);
+    	}
+    	
+    	// 5) Methods: modifiers, name, parameter types, exceptions, return type
+    	output.add("\n\t// Methods");
+    	Method[] methods = c.getDeclaredMethods();
+    	for(Method method : methods) {
+    		
     	}
     	
     	output.add("}");
@@ -162,5 +161,27 @@ public class Inspector {
     		out += "synchronized ";
     	
     	return out;
+    }
+
+    @SuppressWarnings("rawtypes")
+	private static String getSuperClass(Class c) {
+    	Class cSuper = c.getSuperclass();
+    	if (cSuper != null && cSuper != Object.class)
+    		return " extends " + cSuper.getSimpleName();
+    	return "";
+    }
+    
+    @SuppressWarnings("rawtypes")
+	private static String getInterfaces(Class c) {
+    	Class[] interfaces = c.getInterfaces();
+    	String output = "";
+    	if (interfaces.length > 0) {
+    		output += " implements ";
+    		for(Class i : interfaces) {
+    			output += i.getSimpleName() + ", ";
+    		}
+    		output = output.substring(0, output.length()-2);
+    	}
+    	return output;
     }
 }
