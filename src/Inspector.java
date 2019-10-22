@@ -13,6 +13,8 @@ import java.util.Set;
 
 public class Inspector {
 	
+	// tab/spacing used within each class
+	private static final String SP = "  ";
 	private static final Set<Class<?>> PRIMITIVES = new HashSet<Class<?>>(Arrays.asList(
 			byte.class,
 			char.class,
@@ -165,12 +167,12 @@ public class Inspector {
 	private static List<String> getConstructors(Class<?> c) {
     	String name = c.getSimpleName();
     	List<String> output = new ArrayList<String>();
-    	output.add("\t// Constructors");
+    	output.add(SP + "// Constructors");
     	
     	Constructor<?>[] constructors = c.getDeclaredConstructors();
     	for(Constructor<?> constr : constructors)
     	{
-    		String conOutput = "\t" + getModifiers(constr.getModifiers());
+    		String conOutput = SP + getModifiers(constr.getModifiers());
     		conOutput += " " + name + getParameters(constr);
     		conOutput += " " + getExceptions(constr);
     		output.add(conOutput);
@@ -180,13 +182,13 @@ public class Inspector {
     
 	private static List<String> getMethods(Class<?> c) {
     	List<String> output = new ArrayList<String>();
-    	output.add("\t// Methods");
+    	output.add(SP + "// Methods");
     	Method[] methods = c.getDeclaredMethods();
     	for(Method method : methods) {
     		if (!Modifier.isPublic(method.getModifiers()))
     			method.setAccessible(true);
     		
-    		String line = "\t" + getModifiers(method.getModifiers());
+    		String line = SP + getModifiers(method.getModifiers());
     		line += " " + method.getReturnType().getSimpleName();
     		line += " " + method.getName() + getParameters(method);
     		line += " " + getExceptions(method);
@@ -230,14 +232,14 @@ public class Inspector {
 
 	private static List<String> getFields(Class<?> c, Object obj, boolean recursive, int depth) {
     	List<String> output = new ArrayList<String>();
-    	output.add("\t// Fields");
+    	output.add(SP + "// Fields");
     	
     	Field[] fields = c.getDeclaredFields();
     	for(Field field : fields) {
     		if(Modifier.isPrivate(field.getModifiers()))
     			field.setAccessible(true);
     		
-    		String line = "\t" + getModifiers(field.getModifiers());
+    		String line = SP + getModifiers(field.getModifiers());
     		line += " " + field.getType().getSimpleName();
     		line += " " + field.getName();
     		line += " = " + getValue(field, obj, recursive, depth);
