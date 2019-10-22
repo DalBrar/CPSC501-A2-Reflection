@@ -1,7 +1,7 @@
 ======================================================
 Filename: script3.txt
 Running Test: ClassB
-Recursive: false
+Recursive: true
 	public abstract interface Runnable {
 		// Methods
 		public abstract void run() 
@@ -18,9 +18,9 @@ public class ClassB implements Runnable {
 	public void func3(int) 
 
 	// Fields
-	private ClassA val = 1b6d3586
-	private ClassA val2 = 1b6d3586
-	private ClassA val3 = 1b6d3586
+	private ClassA val = ClassB@1b6d3586
+	private ClassA val2 = ClassB@1b6d3586
+	private ClassA val3 = ClassB@1b6d3586
 }
 
 ======================================================

@@ -1,7 +1,7 @@
 ======================================================
 Filename: script0.txt
 Running Test: ClassA
-Recursive: false
+Recursive: true
 	public abstract interface Animal {
 		// Methods
 		public abstract void sleep() 

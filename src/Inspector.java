@@ -253,7 +253,7 @@ public class Inspector {
 			//TODO: add recursion
 			if (obj == null)
 				return "null";
-			return Integer.toHexString(System.identityHashCode(obj));
+			return obj.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(obj));
 				
 		} catch (IllegalArgumentException | IllegalAccessException e) {}
 		return "???";

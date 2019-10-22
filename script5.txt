@@ -1,7 +1,7 @@
 ======================================================
 Filename: script5.txt
 Running Test: ClassD
-Recursive: false
+Recursive: true
 public class ClassD {
 	// Constructors
 	public ClassD() 
@@ -12,10 +12,10 @@ public class ClassD {
 	public int getVal3() 
 
 	// Fields
-	private ClassA val = 677327b6
-	private static ClassA val2 = 677327b6
+	private ClassA val = ClassD@677327b6
+	private static ClassA val2 = ClassD@677327b6
 	private int val3 = 34
-	private ClassA[] vallarray = 677327b6
+	private ClassA[] vallarray = ClassD@677327b6
 }
 
 ======================================================
