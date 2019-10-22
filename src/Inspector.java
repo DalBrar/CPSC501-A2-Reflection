@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Field;
@@ -43,8 +44,36 @@ public class Inspector {
 	private static void inspectClass(Class<?> c, Object obj, boolean recursive, int depth) {
     	if (c == Object.class)
     		return;
-    	//TODO: deal with Arrays
+    	//TODO: bonus
     	Output output = new Output(depth);
+    	
+    	// Handle Arrays: name, component type, length, and all contents
+    	if (c.isArray()) {
+            String array = "[";
+            for(int i=0;i<Array.getLength(obj);i++){
+                if(i>0)
+                    array += (", ");
+                Object value = Array.get(obj, i);
+                if (value == null) {
+                	array += "null";
+                }
+                else if (isPrimitiveType(value.getClass())) {
+					array += String.valueOf(value);
+				}
+                else if (recursive) {
+                	recurseOnClass(c, value, recursive, depth);
+                }
+                else {
+                	array += value.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(value));
+                }
+                
+            }
+            output.add(array + "]");
+    		
+        	//output.add("}");
+        	output.print();
+        	return;
+    	}
     	
     	// 1) Get class Name
     	String title = "";
