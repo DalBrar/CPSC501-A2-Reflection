@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -45,35 +46,37 @@ public class Inspector {
     	if (c == Object.class)
     		return;
     	//TODO: bonus
-    	Output output = new Output(depth);
     	
     	// Handle Arrays: name, component type, length, and all contents
     	if (c.isArray()) {
-            String array = "[";
+    		
+            System.out.print("[");
             for(int i=0;i<Array.getLength(obj);i++){
                 if(i>0)
-                    array += (", ");
+                    System.out.print(", ");
+                
                 Object value = Array.get(obj, i);
                 if (value == null) {
-                	array += "null";
+                	System.out.print("null");
                 }
                 else if (isPrimitiveType(value.getClass())) {
-					array += String.valueOf(value);
+					System.out.print(String.valueOf(value));
 				}
                 else if (recursive) {
-                	recurseOnClass(c, value, recursive, depth);
+                	if (value.getClass().isArray())
+                		System.out.print("\n  ");
+                	recurseOnClass(value.getClass(), value, recursive, depth);
                 }
                 else {
-                	array += value.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(value));
+                	System.out.print(value.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(value)));
                 }
                 
             }
-            output.add(array + "]");
-    		
-        	//output.add("}");
-        	output.print();
+            System.out.println("]");
         	return;
     	}
+    	
+    	Output output = new Output(depth);
     	
     	// 1) Get class Name
     	String title = "";
@@ -327,5 +330,5 @@ public class Inspector {
     		System.out.println(sb);
     	}
     }
-
+    
 }
