@@ -24,6 +24,71 @@ Recursive: true
 	
 	}
 
+		public abstract interface Cloneable {
+		}
+
+		public abstract interface Serializable {
+		}
+
+	public final abstract class char[] implements Cloneable, Serializable {
+	}
+
+		public abstract interface Cloneable {
+		}
+
+		public abstract interface Serializable {
+		}
+
+	public final abstract class ObjectStreamField[] implements Cloneable, Serializable {
+	}
+
+		public abstract interface Comparator {
+			// Methods
+			public abstract boolean equals(Object) 
+			public abstract int compare(Object, Object) 
+			private static Object $deserializeLambda$(SerializedLambda) 
+			public static Comparator comparing(Function, Comparator) 
+			public static Comparator comparing(Function) 
+			public static Comparator comparingDouble(ToDoubleFunction) 
+			public static Comparator comparingInt(ToIntFunction) 
+			public static Comparator comparingLong(ToLongFunction) 
+			private static int lambda$comparing$77a9974f$1(Function, Object, Object) 
+			private static int lambda$comparing$ea9a8b3a$1(Comparator, Function, Object, Object) 
+			private static int lambda$comparingDouble$8dcf42ea$1(ToDoubleFunction, Object, Object) 
+			private static int lambda$comparingInt$7b0bb60$1(ToIntFunction, Object, Object) 
+			private static int lambda$comparingLong$6043328a$1(ToLongFunction, Object, Object) 
+			private int lambda$thenComparing$36697e65$1(Comparator, Object, Object) 
+			public static Comparator naturalOrder() 
+			public static Comparator nullsFirst(Comparator) 
+			public static Comparator nullsLast(Comparator) 
+			public static Comparator reverseOrder() 
+			public Comparator reversed() 
+			public Comparator thenComparing(Function) 
+			public Comparator thenComparing(Comparator) 
+			public Comparator thenComparing(Function, Comparator) 
+			public Comparator thenComparingDouble(ToDoubleFunction) 
+			public Comparator thenComparingInt(ToIntFunction) 
+			public Comparator thenComparingLong(ToLongFunction) 
+		
+		}
+
+		public abstract interface Serializable {
+		}
+
+	private static class CaseInsensitiveComparator implements Comparator, Serializable {
+		// Constructors
+		 CaseInsensitiveComparator() 
+		private CaseInsensitiveComparator() 
+	
+		// Methods
+		public volatile int compare(Object, Object) 
+		public int compare(String, String) 
+		private Object readResolve() 
+	
+		// Fields
+		private static final long serialVersionUID = 8575799808933029326
+	}
+
 public final class String implements Serializable, Comparable, CharSequence {
 	// Constructors
 	public String(byte[], int, int) 
@@ -123,11 +188,11 @@ public final class String implements Serializable, Comparable, CharSequence {
 	public String trim() 
 
 	// Fields
-	private final char[] value = java.lang.String@12a3a380
+	private final char[] value = char[]@d716361
 	private int hash = 0
 	private static final long serialVersionUID = -6849794470754667710
-	private static final ObjectStreamField[] serialPersistentFields = java.lang.String@12a3a380
-	public static final Comparator CASE_INSENSITIVE_ORDER = java.lang.String@12a3a380
+	private static final ObjectStreamField[] serialPersistentFields = java.io.ObjectStreamField[]@3764951d
+	public static final Comparator CASE_INSENSITIVE_ORDER = java.lang.String.CaseInsensitiveComparator@3cd1a2f1
 }
 
 ======================================================

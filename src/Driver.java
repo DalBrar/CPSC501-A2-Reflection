@@ -8,15 +8,15 @@ public class Driver {
         if (args.length == 1) {
             rec = Boolean.parseBoolean(args[1]);
         }
-        //runTest("script0.txt", new ClassT(), rec);
-        //runTest("script1.txt", new ClassA(), rec);
-        //runTest("script2.txt", new ClassA(12), rec);
+        runTest("script0.txt", new ClassT(), rec);
+        runTest("script1.txt", new ClassA(), rec);
+        runTest("script2.txt", new ClassA(12), rec);
         runTest("script3.txt", new ClassB(), rec);
-        //runTest("script4.txt", new ClassD(32), rec);
-        //runTest("script5.txt", new ClassD(), rec);
-        //runTest("script6.txt", new ClassB[12], rec);
-        //runTest("script7.txt", new ClassB[12][12], rec);
-        //runTest("script8.txt", "Test String", rec);
+        runTest("script4.txt", new ClassD(32), rec);
+        runTest("script5.txt", new ClassD(), rec);
+        runTest("script6.txt", new ClassB[12], rec);
+        runTest("script7.txt", new ClassB[12][12], rec);
+        runTest("script8.txt", "Test String", rec);
     }
 
     public static void runTest(String filename, Object testObj, boolean recursive) {

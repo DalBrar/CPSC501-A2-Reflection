@@ -2,6 +2,42 @@
 Filename: script5.txt
 Running Test: ClassD
 Recursive: true
+		public abstract interface Serializable {
+		}
+
+		public abstract interface Runnable {
+			// Methods
+			public abstract void run() 
+		
+		}
+
+	public final class ClassA implements Serializable, Runnable {
+		// Constructors
+		public ClassA() 
+		public ClassA(int) 
+	
+		// Methods
+		public void run() 
+		public String toString() 
+		public void setVal(int) throws Exception
+		private void printSomething() 
+		public int getVal() 
+	
+		// Fields
+		private int val = 17
+		private double val2 = 0.2
+		private boolean val3 = true
+	}
+
+		public abstract interface Cloneable {
+		}
+
+		public abstract interface Serializable {
+		}
+
+	public final abstract class ClassA[] implements Cloneable, Serializable {
+	}
+
 public class ClassD {
 	// Constructors
 	public ClassD() 
@@ -12,10 +48,10 @@ public class ClassD {
 	public int getVal3() 
 
 	// Fields
-	private ClassA val = ClassD@677327b6
-	private static ClassA val2 = ClassD@677327b6
+	private ClassA val = ClassA@1d44bcfa
+	private static ClassA val2 = null
 	private int val3 = 34
-	private ClassA[] vallarray = ClassD@677327b6
+	private ClassA[] vallarray = ClassA[]@266474c2
 }
 
 ======================================================

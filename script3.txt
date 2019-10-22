@@ -2,13 +2,232 @@
 Filename: script3.txt
 Running Test: ClassB
 Recursive: true
+				public abstract interface Serializable {
+				}
+
+				public abstract interface Runnable {
+					// Methods
+					public abstract void run() 
+				
+				}
+
+			public final class ClassA implements Serializable, Runnable {
+				// Constructors
+				public ClassA() 
+				public ClassA(int) 
+			
+				// Methods
+				public void run() 
+				public String toString() 
+				public void setVal(int) throws Exception
+				private void printSomething() 
+				public int getVal() 
+			
+				// Fields
+				private int val = 17
+				private double val2 = 0.2
+				private boolean val3 = true
+			}
+
+				public abstract interface Cloneable {
+				}
+
+				public abstract interface Serializable {
+				}
+
+			public final abstract class ClassA[] implements Cloneable, Serializable {
+			}
+
+		public class ClassD {
+			// Constructors
+			public ClassD() 
+			public ClassD(int) 
+		
+			// Methods
+			public String toString() 
+			public int getVal3() 
+		
+			// Fields
+			private ClassA val = ClassA@135fbaa4
+			private static ClassA val2 = null
+			private int val3 = 34
+			private ClassA[] vallarray = ClassA[]@2503dbd3
+		}
+
+			public abstract interface InterfaceB {
+				// Methods
+				public abstract void func0(int, boolean) throws Exception
+			
+			}
+
+		public abstract interface InterfaceA implements InterfaceB {
+			// Methods
+			public abstract int func2(String) throws Exception, ArithmeticException, IllegalMonitorStateException
+			public abstract void func1(int, double, boolean, String) throws Exception
+		
+		}
+
+			public abstract interface Serializable {
+			}
+
+			public abstract interface Runnable {
+				// Methods
+				public abstract void run() 
+			
+			}
+
+		public final class ClassA implements Serializable, Runnable {
+			// Constructors
+			public ClassA() 
+			public ClassA(int) 
+		
+			// Methods
+			public void run() 
+			public String toString() 
+			public void setVal(int) throws Exception
+			private void printSomething() 
+			public int getVal() 
+		
+			// Fields
+			private int val = 100
+			private double val2 = 0.2
+			private boolean val3 = true
+		}
+
+			public abstract interface Serializable {
+			}
+
+			public abstract interface Runnable {
+				// Methods
+				public abstract void run() 
+			
+			}
+
+		public final class ClassA implements Serializable, Runnable {
+			// Constructors
+			public ClassA() 
+			public ClassA(int) 
+		
+			// Methods
+			public void run() 
+			public String toString() 
+			public void setVal(int) throws Exception
+			private void printSomething() 
+			public int getVal() 
+		
+			// Fields
+			private int val = 2
+			private double val2 = 0.2
+			private boolean val3 = true
+		}
+
+			public abstract interface Serializable {
+			}
+
+			public abstract interface Runnable {
+				// Methods
+				public abstract void run() 
+			
+			}
+
+		public final class ClassA implements Serializable, Runnable {
+			// Constructors
+			public ClassA() 
+			public ClassA(int) 
+		
+			// Methods
+			public void run() 
+			public String toString() 
+			public void setVal(int) throws Exception
+			private void printSomething() 
+			public int getVal() 
+		
+			// Fields
+			private int val = 3
+			private double val2 = 0.2
+			private boolean val3 = true
+		}
+
+	public abstract class ClassC extends ClassD implements InterfaceA {
+		// Constructors
+		public ClassC() 
+		public ClassC(int, int) 
+	
+		// Methods
+		public void run() 
+		public String toString() 
+		public int func2(String) throws Exception, ArithmeticException, IllegalMonitorStateException
+		public void func0(int, boolean) throws Exception
+		public void func1(int, double, boolean, String) throws Exception
+		public abstract void func3(int) 
+	
+		// Fields
+		private ClassA val2 = ClassA@29453f44
+		private ClassA val3 = ClassA@5cad8086
+		private ClassA val4 = ClassA@6e0be858
+	}
+
 	public abstract interface Runnable {
 		// Methods
 		public abstract void run() 
 	
 	}
 
-public class ClassB implements Runnable {
+		public abstract interface Serializable {
+		}
+
+		public abstract interface Runnable {
+			// Methods
+			public abstract void run() 
+		
+		}
+
+	public final class ClassA implements Serializable, Runnable {
+		// Constructors
+		public ClassA() 
+		public ClassA(int) 
+	
+		// Methods
+		public void run() 
+		public String toString() 
+		public void setVal(int) throws Exception
+		private void printSomething() 
+		public int getVal() 
+	
+		// Fields
+		private int val = 3
+		private double val2 = 0.2
+		private boolean val3 = true
+	}
+
+		public abstract interface Serializable {
+		}
+
+		public abstract interface Runnable {
+			// Methods
+			public abstract void run() 
+		
+		}
+
+	public final class ClassA implements Serializable, Runnable {
+		// Constructors
+		public ClassA() 
+		public ClassA(int) 
+	
+		// Methods
+		public void run() 
+		public String toString() 
+		public void setVal(int) throws Exception
+		private void printSomething() 
+		public int getVal() 
+	
+		// Fields
+		private int val = 12
+		private double val2 = 0.2
+		private boolean val3 = true
+	}
+
+public class ClassB extends ClassC implements Runnable {
 	// Constructors
 	public ClassB() throws Exception
 
@@ -18,9 +237,9 @@ public class ClassB implements Runnable {
 	public void func3(int) 
 
 	// Fields
-	private ClassA val = ClassB@1b6d3586
-	private ClassA val2 = ClassB@1b6d3586
-	private ClassA val3 = ClassB@1b6d3586
+	private ClassA val = ClassA@610455d6
+	private ClassA val2 = ClassA@511d50c0
+	private ClassA val3 = null
 }
 
 ======================================================

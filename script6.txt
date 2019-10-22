@@ -1,6 +1,6 @@
 ======================================================
 Filename: script6.txt
-Running Test: [LClassB;@14ae5a5
+Running Test: [LClassB;@6f94fa3e
 Recursive: true
 	public abstract interface Cloneable {
 	}

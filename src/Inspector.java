@@ -55,7 +55,7 @@ public class Inspector {
     	title = modifiers + " " + type + name;
     	
     	// 2) Name of immediate super-class
-    	title += getSuperClass(c, recursive, depth);
+    	title += getSuperClass(c, obj, recursive, depth);
     	
     	// 3) Name of each interface
     	title += getInterfaces(c, recursive, depth);
@@ -86,10 +86,12 @@ public class Inspector {
     	output.print();
     }
 
-    private static void recurseOnClass(Class<?> c, boolean recursive, int depth) {
+	private static void recurseOnClass(Class<?> c, boolean recursive, int depth) {
+		recurseOnClass(c, null, recursive, depth);
+	}
+    private static void recurseOnClass(Class<?> c, Object obj, boolean recursive, int depth) {
     	try {
-			Object obj = null;
-			if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers()))
+			if (obj == null && !c.isInterface())
 				obj = c.getConstructor().newInstance();
 			inspectClass(c, obj, recursive, depth+1);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -134,10 +136,13 @@ public class Inspector {
     	return out;
     }
 
-	private static String getSuperClass(Class<?> c, boolean recursive, int depth) {
+	private static String getSuperClass(Class<?> c, Object obj, boolean recursive, int depth) {
     	Class<?> cSuper = c.getSuperclass();
     	if (cSuper != null && cSuper != Object.class) {
-    		recurseOnClass(cSuper, recursive, depth);
+    		if (Modifier.isAbstract(cSuper.getModifiers()))
+    			recurseOnClass(cSuper, obj, recursive, depth);
+    		else
+    			recurseOnClass(cSuper, recursive, depth);
     		return " extends " + cSuper.getSimpleName();
     	}
     	return "";
@@ -292,7 +297,4 @@ public class Inspector {
     	}
     }
 
-    private static void debug(String str) {
-    	System.err.println(str);
-    }
 }

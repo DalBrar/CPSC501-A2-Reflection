@@ -21,9 +21,9 @@ public final class ClassT implements Animal {
 	public String toString() 
 	public void sleep() 
 	public void setVal(int) throws Exception
-	public int getVal() 
 	private static void printSomething() 
 	public void animalSound() 
+	public int getVal() 
 
 	// Fields
 	private int val = 55
