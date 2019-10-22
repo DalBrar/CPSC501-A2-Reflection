@@ -251,7 +251,9 @@ public class Inspector {
 			if(type == String.class)
 				return (String) val;
 			//TODO: add recursion
-			return "Object";
+			if (obj == null)
+				return "null";
+			return Integer.toHexString(System.identityHashCode(obj));
 				
 		} catch (IllegalArgumentException | IllegalAccessException e) {}
 		return "???";

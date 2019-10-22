@@ -1,7 +1,7 @@
 ======================================================
 Filename: script1.txt
 Running Test: ClassA
-Recursive: true
+Recursive: false
 	public abstract interface Serializable {
 	}
 
@@ -20,8 +20,8 @@ public final class ClassA implements Serializable, Runnable {
 	public void run() 
 	public String toString() 
 	public void setVal(int) throws Exception
-	private void printSomething() 
 	public int getVal() 
+	private void printSomething() 
 
 	// Fields
 	private int val = 3

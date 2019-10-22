@@ -1,7 +1,7 @@
 ======================================================
 Filename: script8.txt
 Running Test: Test String
-Recursive: true
+Recursive: false
 	public abstract interface Serializable {
 	}
 
@@ -123,11 +123,11 @@ public final class String implements Serializable, Comparable, CharSequence {
 	public String trim() 
 
 	// Fields
-	private final char[] value = Object
+	private final char[] value = 12a3a380
 	private int hash = 0
 	private static final long serialVersionUID = -6849794470754667710
-	private static final ObjectStreamField[] serialPersistentFields = Object
-	public static final Comparator CASE_INSENSITIVE_ORDER = Object
+	private static final ObjectStreamField[] serialPersistentFields = 12a3a380
+	public static final Comparator CASE_INSENSITIVE_ORDER = 12a3a380
 }
 
 ======================================================
