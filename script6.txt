@@ -3,27 +3,12 @@ Filename: script6.txt
 Running Test: [LClassB;@74a14482
 Recursive: true
 	public abstract interface Cloneable {
-		// Constructors
-	
-		// Methods
-	
-		// Fields
 	}
 
 	public abstract interface Serializable {
-		// Constructors
-	
-		// Methods
-	
-		// Fields
 	}
 
 public final abstract class ClassB[] implements Cloneable, Serializable {
-	// Constructors
-
-	// Methods
-
-	// Fields
 }
 
 ======================================================

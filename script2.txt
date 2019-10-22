@@ -3,20 +3,12 @@ Filename: script2.txt
 Running Test: ClassA
 Recursive: true
 	public abstract interface Serializable {
-		// Constructors
-	
-		// Methods
-	
-		// Fields
 	}
 
 	public abstract interface Runnable {
-		// Constructors
-	
 		// Methods
 		public abstract void run() 
 	
-		// Fields
 	}
 
 public final class ClassA implements Serializable, Runnable {
@@ -28,8 +20,8 @@ public final class ClassA implements Serializable, Runnable {
 	public void run() 
 	public String toString() 
 	public void setVal(int) throws Exception
-	public int getVal() 
 	private void printSomething() 
+	public int getVal() 
 
 	// Fields
 	private int val = 12

@@ -3,12 +3,9 @@ Filename: script3.txt
 Running Test: ClassB
 Recursive: true
 	public abstract interface Runnable {
-		// Constructors
-	
 		// Methods
 		public abstract void run() 
 	
-		// Fields
 	}
 
 public class ClassB implements Runnable {

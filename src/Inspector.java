@@ -58,15 +58,23 @@ public class Inspector {
     	output.add(title);
     	
     	// 4) Constructors: name, parameter types, modifiers
-    	output.add(getConstructors(c));
-    	output.addln();
+    	List<String> constructors = getConstructors(c);
+    	if (constructors.size() > 1) {
+    		output.add(constructors);
+    		output.addln();
+    	}
     	
     	// 5) Methods: modifiers, name, parameter types, exceptions, return type
-    	output.add(getMethods(c));
-    	output.addln();
+    	List<String> methods = getMethods(c);
+    	if (methods.size() > 1) {
+    		output.add(methods);
+    		output.addln();
+    	}
     	
     	// 6) Fields: modifiers, type, name, value
-    	output.add(getFields(c, obj));
+    	List<String> fields = getFields(c, obj);
+    	if (fields.size() > 1)
+    		output.add(fields);
     	
     	output.add("}");
     	output.print();
