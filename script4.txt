@@ -2,7 +2,7 @@
 Filename: script4.txt
 Running Test: ClassD
 Recursive: true
-public ClassD {
+public class ClassD {
 	// Constructors
 	public ClassD() 
 	public ClassD(int) 

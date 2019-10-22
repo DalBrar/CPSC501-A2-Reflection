@@ -8,6 +8,7 @@ public class Driver {
         if (args.length == 1) {
             rec = Boolean.parseBoolean(args[1]);
         }
+        runTest("script0.txt", new ClassT(), rec);
         runTest("script1.txt", new ClassA(), rec);
         runTest("script2.txt", new ClassA(12), rec);
         runTest("script3.txt", new ClassB(), rec);

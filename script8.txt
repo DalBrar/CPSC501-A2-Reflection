@@ -2,7 +2,40 @@
 Filename: script8.txt
 Running Test: Test String
 Recursive: true
-public final String implements Serializable, Comparable, CharSequence {
+	public abstract interface Serializable {
+		// Constructors
+	
+		// Methods
+	
+		// Fields
+	}
+
+	public abstract interface Comparable {
+		// Constructors
+	
+		// Methods
+		public abstract int compareTo(Object) 
+	
+		// Fields
+	}
+
+	public abstract interface CharSequence {
+		// Constructors
+	
+		// Methods
+		public abstract String toString() 
+		public abstract char charAt(int) 
+		public abstract int length() 
+		public abstract CharSequence subSequence(int, int) 
+		public IntStream chars() 
+		public IntStream codePoints() 
+		private OfInt lambda$chars$0() 
+		private OfInt lambda$codePoints$1() 
+	
+		// Fields
+	}
+
+public final class String implements Serializable, Comparable, CharSequence {
 	// Constructors
 	public String(byte[], int, int) 
 	public String(byte[], Charset) 

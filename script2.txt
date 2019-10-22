@@ -2,7 +2,24 @@
 Filename: script2.txt
 Running Test: ClassA
 Recursive: true
-public final ClassA implements Serializable, Runnable {
+	public abstract interface Serializable {
+		// Constructors
+	
+		// Methods
+	
+		// Fields
+	}
+
+	public abstract interface Runnable {
+		// Constructors
+	
+		// Methods
+		public abstract void run() 
+	
+		// Fields
+	}
+
+public final class ClassA implements Serializable, Runnable {
 	// Constructors
 	public ClassA() 
 	public ClassA(int) 

@@ -1,8 +1,7 @@
-import java.beans.PropertyEditor;
-import java.beans.PropertyEditorManager;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -33,24 +32,27 @@ public class Inspector {
     }
 
     @SuppressWarnings({ "rawtypes" })
-	private void inspectClass(Class c, Object obj, boolean recursive, int depth) {
+	private static void inspectClass(Class c, Object obj, boolean recursive, int depth) {
     	if (c == Object.class)
     		return;
-    	
+    	//TODO: deal with Arrays
     	Output output = new Output(depth);
     	
     	// 1) Get class Name
     	String title = "";
     	int mods = c.getModifiers();
     	String modifiers = getModifiers(mods);
+    	String type = "class ";
+    	if (c.isInterface())
+    		type = "interface ";
     	String name = c.getSimpleName();
-    	title = modifiers + " " + name;
+    	title = modifiers + " " + type + name;
     	
     	// 2) Name of immediate super-class
-    	title += getSuperClass(c);
+    	title += getSuperClass(c, recursive, depth);
     	
     	// 3) Name of each interface
-    	title += getInterfaces(c);
+    	title += getInterfaces(c, recursive, depth);
     	
     	title += " {";
     	output.add(title);
@@ -68,31 +70,6 @@ public class Inspector {
     	
     	output.add("}");
     	output.print();
-    }
-    
-    public class Output {
-    	private StringBuilder sb = new StringBuilder();
-    	private String tabs = "";
-    	
-    	public Output(int depth) {
-    		for (int i = 0; i < depth; i++)
-    			tabs += "\t";
-    	}
-    	
-    	public void addln() {
-    		add("");
-    	}
-    	public void add(String str) {
-    		sb.append(tabs + str + "\n");
-    	}
-    	public void add(List<String> list) {
-    		for(String line : list)
-    			add(line);
-    	}
-    	
-    	public void print() {
-    		System.out.println(sb);
-    	}
     }
 
     private static String getModifiers(int mod) {
@@ -131,22 +108,36 @@ public class Inspector {
     	return out;
     }
 
-    @SuppressWarnings("rawtypes")
-	private static String getSuperClass(Class c) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private static String getSuperClass(Class c, boolean recursive, int depth) {
     	Class cSuper = c.getSuperclass();
-    	if (cSuper != null && cSuper != Object.class)
+    	if (cSuper != null && cSuper != Object.class) {
+    		try {
+				inspectClass(cSuper, cSuper.getConstructor().newInstance(), recursive, depth+1);
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				return "";
+			}
     		return " extends " + cSuper.getSimpleName();
+    	}
     	return "";
     }
     
-    @SuppressWarnings("rawtypes")
-	private static String getInterfaces(Class c) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private static String getInterfaces(Class c, boolean recursive, int depth) {
     	Class[] interfaces = c.getInterfaces();
     	String output = "";
     	if (interfaces.length > 0) {
     		output += " implements ";
     		for(Class i : interfaces) {
     			output += i.getSimpleName() + ", ";
+        		try {
+        			Object obj = null;
+        			if (!i.isInterface())
+        				obj = i.getConstructor().newInstance();
+    				inspectClass(i, obj, recursive, depth+1);
+    			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+    					| InvocationTargetException | NoSuchMethodException | SecurityException e) {}
     		}
     		output = output.substring(0, output.length()-2);
     	}
@@ -201,7 +192,7 @@ public class Inspector {
     		String line = "\t" + getModifiers(field.getModifiers());
     		line += " " + field.getType().getSimpleName();
     		line += " " + field.getName();
-			line += " = " + getValue(field, obj);
+    		line += " = " + getValue(field, obj);
     		output.add(line);
     	}
     	
@@ -241,7 +232,8 @@ public class Inspector {
     	return output;
     }
     
-    private static String getValue(Field field, Object obj) {
+    @SuppressWarnings("rawtypes")
+	private static String getValue(Field field, Object obj) {
     	Class type = field.getType();
     	try {
 			Object val = field.get(obj);
@@ -250,6 +242,7 @@ public class Inspector {
 				return String.valueOf(val);
 			if(type == String.class)
 				return (String) val;
+			//TODO: add recursion
 			return "Object";
 				
 		} catch (IllegalArgumentException | IllegalAccessException e) {}
@@ -259,5 +252,30 @@ public class Inspector {
     private static boolean isPrimitiveType(Class<?> clazz) {
     	return PRIMITIVES.contains(clazz);
     }
-    
+ 
+    public static class Output {
+    	private StringBuilder sb = new StringBuilder();
+    	private String tabs = "";
+    	
+    	public Output(int depth) {
+    		for (int i = 0; i < depth; i++)
+    			tabs += "\t";
+    	}
+    	
+    	public void addln() {
+    		add("");
+    	}
+    	public void add(String str) {
+    		sb.append(tabs + str + "\n");
+    	}
+    	public void add(List<String> list) {
+    		for(String line : list)
+    			add(line);
+    	}
+    	
+    	public void print() {
+    		System.out.println(sb);
+    	}
+    }
+
 }

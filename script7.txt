@@ -1,8 +1,24 @@
 ======================================================
 Filename: script7.txt
-Running Test: [[LClassB;@1b6d3586
+Running Test: [[LClassB;@14ae5a5
 Recursive: true
-public final abstract ClassB[][] implements Cloneable, Serializable {
+	public abstract interface Cloneable {
+		// Constructors
+	
+		// Methods
+	
+		// Fields
+	}
+
+	public abstract interface Serializable {
+		// Constructors
+	
+		// Methods
+	
+		// Fields
+	}
+
+public final abstract class ClassB[][] implements Cloneable, Serializable {
 	// Constructors
 
 	// Methods
