@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Field;
@@ -5,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,7 +24,15 @@ public class Inspector {
 			float.class,
 			double.class,
 			boolean.class,
-			void.class
+			void.class,
+			Byte.class,
+			Short.class,
+			Integer.class,
+			Long.class,
+			Float.class,
+			Double.class,
+			Boolean.class,
+			String.class
 	));
 	
     @SuppressWarnings("rawtypes")
@@ -35,6 +45,7 @@ public class Inspector {
 	private static void inspectClass(Class c, Object obj, boolean recursive, int depth) {
     	if (c == Object.class)
     		return;
+    	//TODO: bonus
     	//TODO: deal with Arrays
     	Output output = new Output(depth);
     	
@@ -72,7 +83,7 @@ public class Inspector {
     	}
     	
     	// 6) Fields: modifiers, type, name, value
-    	List<String> fields = getFields(c, obj);
+    	List<String> fields = getFields(c, obj, recursive, depth);
     	if (fields.size() > 1)
     		output.add(fields);
     	
@@ -121,11 +132,14 @@ public class Inspector {
     	Class cSuper = c.getSuperclass();
     	if (cSuper != null && cSuper != Object.class) {
     		try {
-				inspectClass(cSuper, cSuper.getConstructor().newInstance(), recursive, depth+1);
+    			Object obj = null;
+    			int mods = cSuper.getModifiers();
+    			if (!cSuper.isInterface() && !Modifier.isAbstract(mods))
+    				obj = cSuper.getConstructor().newInstance();
+    			System.out.println(cSuper.getSimpleName() + ": " + (obj == null));
+				inspectClass(cSuper, obj, recursive, depth+1);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				return "";
-			}
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {e.printStackTrace();}
     		return " extends " + cSuper.getSimpleName();
     	}
     	return "";
@@ -188,7 +202,7 @@ public class Inspector {
     }
     
     @SuppressWarnings("rawtypes")
-	private static List<String> getFields(Class c, Object obj) {
+	private static List<String> getFields(Class c, Object obj, boolean recursive, int depth) {
     	List<String> output = new ArrayList<String>();
     	output.add("\t// Fields");
     	
@@ -200,7 +214,7 @@ public class Inspector {
     		String line = "\t" + getModifiers(field.getModifiers());
     		line += " " + field.getType().getSimpleName();
     		line += " " + field.getName();
-    		line += " = " + getValue(field, obj);
+    		line += " = " + getValue(field, obj, recursive, depth);
     		output.add(line);
     	}
     	
@@ -241,21 +255,25 @@ public class Inspector {
     }
     
     @SuppressWarnings("rawtypes")
-	private static String getValue(Field field, Object obj) {
+	private static String getValue(Field field, Object obj, boolean recursive, int depth) {
     	Class type = field.getType();
     	try {
 			Object val = field.get(obj);
 			
 			if(isPrimitiveType(type))
 				return String.valueOf(val);
-			if(type == String.class)
-				return (String) val;
-			//TODO: add recursion
-			if (obj == null)
+			if (val == null)
 				return "null";
-			return obj.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(obj));
+			if (recursive) {
+				Class clazz = val.getClass();
+				inspectClass(clazz, val, recursive, depth + 1);
+			}
+			return val.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(val));
 				
-		} catch (IllegalArgumentException | IllegalAccessException e) {}
+		} catch (IllegalArgumentException | IllegalAccessException | NullPointerException e) {
+			System.out.println("" + (field == null) + " : " + (obj == null));
+			e.printStackTrace();
+		}
 		return "???";
     }
     
