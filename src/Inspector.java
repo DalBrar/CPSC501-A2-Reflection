@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Field;
@@ -6,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -45,7 +43,6 @@ public class Inspector {
 	private static void inspectClass(Class c, Object obj, boolean recursive, int depth) {
     	if (c == Object.class)
     		return;
-    	//TODO: bonus
     	//TODO: deal with Arrays
     	Output output = new Output(depth);
     	
@@ -83,7 +80,7 @@ public class Inspector {
     	}
     	
     	// 6) Fields: modifiers, type, name, value
-    	List<String> fields = getFields(c, obj, recursive, depth);
+    	List<String> fields = getFields(c, obj);
     	if (fields.size() > 1)
     		output.add(fields);
     	
@@ -132,14 +129,11 @@ public class Inspector {
     	Class cSuper = c.getSuperclass();
     	if (cSuper != null && cSuper != Object.class) {
     		try {
-    			Object obj = null;
-    			int mods = cSuper.getModifiers();
-    			if (!cSuper.isInterface() && !Modifier.isAbstract(mods))
-    				obj = cSuper.getConstructor().newInstance();
-    			System.out.println(cSuper.getSimpleName() + ": " + (obj == null));
-				inspectClass(cSuper, obj, recursive, depth+1);
+				inspectClass(cSuper, cSuper.getConstructor().newInstance(), recursive, depth+1);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException | NoSuchMethodException | SecurityException e) {e.printStackTrace();}
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				return "";
+			}
     		return " extends " + cSuper.getSimpleName();
     	}
     	return "";
@@ -201,26 +195,6 @@ public class Inspector {
     	return output;
     }
     
-    @SuppressWarnings("rawtypes")
-	private static List<String> getFields(Class c, Object obj, boolean recursive, int depth) {
-    	List<String> output = new ArrayList<String>();
-    	output.add("\t// Fields");
-    	
-    	Field[] fields = c.getDeclaredFields();
-    	for(Field field : fields) {
-    		if(Modifier.isPrivate(field.getModifiers()))
-    			field.setAccessible(true);
-    		
-    		String line = "\t" + getModifiers(field.getModifiers());
-    		line += " " + field.getType().getSimpleName();
-    		line += " " + field.getName();
-    		line += " = " + getValue(field, obj, recursive, depth);
-    		output.add(line);
-    	}
-    	
-    	return output;
-    }
-    
     private static String getParameters(Executable exec) {
 		String output = "(";
 		
@@ -253,27 +227,41 @@ public class Inspector {
     		output = output.substring(0, output.length()-2);
     	return output;
     }
+
+    @SuppressWarnings("rawtypes")
+	private static List<String> getFields(Class c, Object obj) {
+    	List<String> output = new ArrayList<String>();
+    	output.add("\t// Fields");
+    	
+    	Field[] fields = c.getDeclaredFields();
+    	for(Field field : fields) {
+    		if(Modifier.isPrivate(field.getModifiers()))
+    			field.setAccessible(true);
+    		
+    		String line = "\t" + getModifiers(field.getModifiers());
+    		line += " " + field.getType().getSimpleName();
+    		line += " " + field.getName();
+    		line += " = " + getValue(field, obj);
+    		output.add(line);
+    	}
+    	
+    	return output;
+    }
     
     @SuppressWarnings("rawtypes")
-	private static String getValue(Field field, Object obj, boolean recursive, int depth) {
+	private static String getValue(Field field, Object obj) {
     	Class type = field.getType();
     	try {
 			Object val = field.get(obj);
 			
 			if(isPrimitiveType(type))
 				return String.valueOf(val);
+			//TODO: add recursion
 			if (val == null)
 				return "null";
-			if (recursive) {
-				Class clazz = val.getClass();
-				inspectClass(clazz, val, recursive, depth + 1);
-			}
 			return val.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(val));
 				
-		} catch (IllegalArgumentException | IllegalAccessException | NullPointerException e) {
-			System.out.println("" + (field == null) + " : " + (obj == null));
-			e.printStackTrace();
-		}
+		} catch (IllegalArgumentException | IllegalAccessException e) {}
 		return "???";
     }
     
