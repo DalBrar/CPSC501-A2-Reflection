@@ -29,15 +29,8 @@ Recursive: true
 		private boolean val3 = true
 	}
 
-		public abstract interface Cloneable {
-		}
-
-		public abstract interface Serializable {
-		}
-
-	public final abstract class ClassA[] implements Cloneable, Serializable {
-	}
-
+Array ClassA[] of component class [LClassA; size of 10
+[null, null, null, null, null, null, null, null, null, null]
 public class ClassD {
 	// Constructors
 	public ClassD() 
@@ -48,10 +41,10 @@ public class ClassD {
 	public int getVal3() 
 
 	// Fields
-	private ClassA val = ClassA@60e53b93
+	private ClassA val = ClassA@61bbe9ba
 	private static ClassA val2 = null
 	private int val3 = 32
-	private ClassA[] vallarray = ClassA[]@5e2de80c
+	private ClassA[] vallarray = ClassA[]@610455d6
 }
 
 ======================================================

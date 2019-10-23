@@ -16,7 +16,7 @@ import java.util.Set;
 public class Inspector {
 	
 	// tab/spacing used within each class
-	private static final String SP = "  ";
+	private static final String SP = "\t";
 	private static final Set<Class<?>> PRIMITIVES = new HashSet<Class<?>>(Arrays.asList(
 			byte.class,
 			char.class,
@@ -49,30 +49,11 @@ public class Inspector {
     	
     	// Handle Arrays: name, component type, length, and all contents
     	if (c.isArray()) {
-    		
-            System.out.print("[");
-            for(int i=0;i<Array.getLength(obj);i++){
-                if(i>0)
-                    System.out.print(", ");
-                
-                Object value = Array.get(obj, i);
-                if (value == null) {
-                	System.out.print("null");
-                }
-                else if (isPrimitiveType(value.getClass())) {
-					System.out.print(String.valueOf(value));
-				}
-                else if (recursive) {
-                	if (value.getClass().isArray())
-                		System.out.print("\n  ");
-                	recurseOnClass(value.getClass(), value, recursive, depth);
-                }
-                else {
-                	System.out.print(value.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(value)));
-                }
-                
-            }
-            System.out.println("]");
+    		String name = c.getSimpleName();
+    		String type = c.toString();
+    		int size = Array.getLength(obj);
+    		System.out.println(String.format("Array %s of component %s size of %d", name, type, size));
+    		System.out.println(recurseArray(obj, depth));
         	return;
     	}
     	
@@ -329,6 +310,37 @@ public class Inspector {
     	public void print() {
     		System.out.println(sb);
     	}
+    }
+    
+    public static String recurseArray(Object obj, int depth) {
+    	StringBuffer sb = new StringBuffer();
+    	boolean multiDimension = false;
+        sb.append("[");
+        for(int i=0;i<Array.getLength(obj);i++){
+            if(i>0)
+                sb.append(", ");
+            
+            Object value = Array.get(obj, i);
+            if (value == null) {
+            	sb.append("null");
+            	continue;
+            }
+            else if (isPrimitiveType(value.getClass())) {
+				sb.append(String.valueOf(value));
+				continue;
+			}
+            else if (value.getClass().isArray()) {
+            	multiDimension = true;
+            	sb.append("\n" + SP);
+            	sb.append(recurseArray(value, depth+1));
+            	continue;
+            }
+            sb.append(value.getClass().getCanonicalName() + "@" + Integer.toHexString(System.identityHashCode(value)));
+        }
+        if (multiDimension)
+        	sb.append("\n");
+        sb.append("]");
+        return sb.toString();
     }
     
 }

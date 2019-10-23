@@ -29,15 +29,8 @@ Recursive: true
 				private boolean val3 = true
 			}
 
-				public abstract interface Cloneable {
-				}
-
-				public abstract interface Serializable {
-				}
-
-			public final abstract class ClassA[] implements Cloneable, Serializable {
-			}
-
+Array ClassA[] of component class [LClassA; size of 10
+[null, null, null, null, null, null, null, null, null, null]
 		public class ClassD {
 			// Constructors
 			public ClassD() 
@@ -48,10 +41,10 @@ Recursive: true
 			public int getVal3() 
 		
 			// Fields
-			private ClassA val = ClassA@135fbaa4
+			private ClassA val = ClassA@14ae5a5
 			private static ClassA val2 = null
 			private int val3 = 34
-			private ClassA[] vallarray = ClassA[]@2503dbd3
+			private ClassA[] vallarray = ClassA[]@135fbaa4
 		}
 
 			public abstract interface InterfaceB {
@@ -158,13 +151,13 @@ Recursive: true
 		public String toString() 
 		public int func2(String) throws Exception, ArithmeticException, IllegalMonitorStateException
 		public void func0(int, boolean) throws Exception
-		public void func1(int, double, boolean, String) throws Exception
 		public abstract void func3(int) 
+		public void func1(int, double, boolean, String) throws Exception
 	
 		// Fields
-		private ClassA val2 = ClassA@29453f44
-		private ClassA val3 = ClassA@5cad8086
-		private ClassA val4 = ClassA@6e0be858
+		private ClassA val2 = ClassA@4b67cf4d
+		private ClassA val3 = ClassA@7ea987ac
+		private ClassA val4 = ClassA@12a3a380
 	}
 
 	public abstract interface Runnable {
@@ -237,8 +230,8 @@ public class ClassB extends ClassC implements Runnable {
 	public void func3(int) 
 
 	// Fields
-	private ClassA val = ClassA@610455d6
-	private ClassA val2 = ClassA@511d50c0
+	private ClassA val = ClassA@5cad8086
+	private ClassA val2 = ClassA@6e0be858
 	private ClassA val3 = null
 }
 

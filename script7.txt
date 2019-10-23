@@ -1,14 +1,20 @@
 ======================================================
 Filename: script7.txt
-Running Test: [[LClassB;@66d3c617
+Running Test: [[LClassB;@1d44bcfa
 Recursive: true
-	public abstract interface Cloneable {
-	}
-
-	public abstract interface Serializable {
-	}
-
-public final abstract class ClassB[][] implements Cloneable, Serializable {
-}
-
+Array ClassB[][] of component class [[LClassB; size of 12
+[
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null], 
+	[null, null, null, null, null, null, null, null, null, null, null, null]
+]
 ======================================================
