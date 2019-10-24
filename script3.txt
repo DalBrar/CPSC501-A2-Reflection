@@ -29,7 +29,7 @@ Recursive: true
 				private boolean val3 = true
 			}
 
-			Array ClassA[] of component class [LClassA; size of 10 {
+			Array ClassA[]@45ee12a7 of component class [LClassA; size of 10 {
 				[null, null, null, null, null, null, null, null, null, null]
 			}
 
@@ -151,8 +151,8 @@ Recursive: true
 		// Methods
 		public void run() 
 		public String toString() 
-		public void func1(int, double, boolean, String) throws Exception
 		public abstract void func3(int) 
+		public void func1(int, double, boolean, String) throws Exception
 		public int func2(String) throws Exception, ArithmeticException, IllegalMonitorStateException
 		public void func0(int, boolean) throws Exception
 	

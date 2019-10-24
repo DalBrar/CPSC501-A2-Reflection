@@ -29,7 +29,7 @@ Recursive: true
 		private boolean val3 = true
 	}
 
-	Array ClassA[] of component class [LClassA; size of 10 {
+	Array ClassA[]@5e2de80c of component class [LClassA; size of 10 {
 		[null, null, null, null, null, null, null, null, null, null]
 	}
 

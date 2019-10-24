@@ -24,11 +24,11 @@ Recursive: true
 	
 	}
 
-	Array char[] of component class [C size of 11 {
+	Array char[]@2b193f2d of component class [C size of 11 {
 		[T, e, s, t,  , S, t, r, i, n, g]
 	}
 
-	Array ObjectStreamField[] of component class [Ljava.io.ObjectStreamField; size of 0 {
+	Array ObjectStreamField[]@4dc63996 of component class [Ljava.io.ObjectStreamField; size of 0 {
 		[]
 	}
 

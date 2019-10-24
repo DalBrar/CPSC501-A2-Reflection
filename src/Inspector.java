@@ -52,7 +52,7 @@ public class Inspector {
     	
     	// Handle Arrays: name, component type, length, and all contents
     	if (c.isArray()) {
-    		String name = c.getSimpleName();
+    		String name = c.getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(obj));
     		String type = c.toString();
     		int size = Array.getLength(obj);
     		output.add(String.format("Array %s of component %s size of %d {", name, type, Integer.valueOf(size)));
@@ -293,7 +293,7 @@ public class Inspector {
     }
  
     public static String recurseArray(Object obj, String tabs) {
-    	StringBuffer sb = new StringBuffer();
+    	StringBuilder sb = new StringBuilder();
     	boolean multiDimension = false;
         sb.append(SP + "[");
         for(int i=0;i<Array.getLength(obj);i++){

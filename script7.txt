@@ -2,7 +2,7 @@
 Filename: script7.txt
 Running Test: [[LClassB;@266474c2
 Recursive: true
-Array ClassB[][] of component class [[LClassB; size of 12 {
+Array ClassB[][]@266474c2 of component class [[LClassB; size of 12 {
 	[
 		[null, null, null, null, null, null, null, null, null, null, null, null], 
 		[null, null, null, null, null, null, null, null, null, null, null, null], 
