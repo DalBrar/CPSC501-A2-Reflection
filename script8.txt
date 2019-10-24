@@ -24,10 +24,14 @@ Recursive: true
 	
 	}
 
-Array char[] of component class [C size of 11
-[java.lang.Character@2b193f2d, java.lang.Character@355da254, java.lang.Character@4dc63996, java.lang.Character@d716361, java.lang.Character@6ff3c5b5, java.lang.Character@3764951d, java.lang.Character@4b1210ee, java.lang.Character@4d7e1886, java.lang.Character@3cd1a2f1, java.lang.Character@2f0e140b, java.lang.Character@7440e464]
-Array ObjectStreamField[] of component class [Ljava.io.ObjectStreamField; size of 0
-[]
+	Array char[] of component class [C size of 11 {
+		[T, e, s, t,  , S, t, r, i, n, g]
+	}
+
+	Array ObjectStreamField[] of component class [Ljava.io.ObjectStreamField; size of 0 {
+		[]
+	}
+
 		public abstract interface Comparator {
 			// Methods
 			public abstract boolean equals(Object) 
@@ -174,11 +178,11 @@ public final class String implements Serializable, Comparable, CharSequence {
 	public String trim() 
 
 	// Fields
-	private final char[] value = char[]@49476842
+	private final char[] value = char[]@2b193f2d
 	private int hash = 0
 	private static final long serialVersionUID = -6849794470754667710
-	private static final ObjectStreamField[] serialPersistentFields = java.io.ObjectStreamField[]@27c170f0
-	public static final Comparator CASE_INSENSITIVE_ORDER = java.lang.String.CaseInsensitiveComparator@5a07e868
+	private static final ObjectStreamField[] serialPersistentFields = java.io.ObjectStreamField[]@4dc63996
+	public static final Comparator CASE_INSENSITIVE_ORDER = java.lang.String.CaseInsensitiveComparator@3764951d
 }
 
 ======================================================

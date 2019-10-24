@@ -20,8 +20,8 @@ Recursive: true
 		public void run() 
 		public String toString() 
 		public void setVal(int) throws Exception
-		private void printSomething() 
 		public int getVal() 
+		private void printSomething() 
 	
 		// Fields
 		private int val = 17
@@ -29,8 +29,10 @@ Recursive: true
 		private boolean val3 = true
 	}
 
-Array ClassA[] of component class [LClassA; size of 10
-[null, null, null, null, null, null, null, null, null, null]
+	Array ClassA[] of component class [LClassA; size of 10 {
+		[null, null, null, null, null, null, null, null, null, null]
+	}
+
 public class ClassD {
 	// Constructors
 	public ClassD() 
@@ -41,10 +43,10 @@ public class ClassD {
 	public int getVal3() 
 
 	// Fields
-	private ClassA val = ClassA@61bbe9ba
+	private ClassA val = ClassA@610455d6
 	private static ClassA val2 = null
 	private int val3 = 32
-	private ClassA[] vallarray = ClassA[]@610455d6
+	private ClassA[] vallarray = ClassA[]@511d50c0
 }
 
 ======================================================

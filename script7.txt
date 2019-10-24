@@ -1,20 +1,22 @@
 ======================================================
 Filename: script7.txt
-Running Test: [[LClassB;@1d44bcfa
+Running Test: [[LClassB;@266474c2
 Recursive: true
-Array ClassB[][] of component class [[LClassB; size of 12
-[
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null], 
-	[null, null, null, null, null, null, null, null, null, null, null, null]
-]
+Array ClassB[][] of component class [[LClassB; size of 12 {
+	[
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null], 
+		[null, null, null, null, null, null, null, null, null, null, null, null]
+	]
+}
+
 ======================================================
