@@ -151,9 +151,9 @@ Recursive: true
 		// Methods
 		public void run() 
 		public String toString() 
-		public abstract void func3(int) 
 		public void func1(int, double, boolean, String) throws Exception
 		public int func2(String) throws Exception, ArithmeticException, IllegalMonitorStateException
+		public abstract void func3(int) 
 		public void func0(int, boolean) throws Exception
 	
 		// Fields

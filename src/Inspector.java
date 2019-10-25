@@ -1,3 +1,12 @@
+/* CPSC 501 - Assignment 2 - Reflection
+ * by: Dalbir Brar
+ * ID: 002 968 97
+ * Program:
+ * 		Recursively and reflectively goes through
+ * 		a given object and prints all its parents,
+ * 		constructors, methods and fields.
+ */
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
